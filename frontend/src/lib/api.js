@@ -1,11 +1,6 @@
 // URL base del backend donde están expuestas las rutas de productos
 // URL base del backend
-const BASE_API =
-  typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? "http://localhost:3001"
-    : "https://lab15-web-production.up.railway.app";
-
-const BASE_URL = `${BASE_API}/api/productos`;
+const BASE_URL = "https://lab15-web-production.up.railway.app/api/productos";
 
 // Obtiene todos los productos (GET /api/productos)
 export async function getProductos() {
