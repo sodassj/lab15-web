@@ -30,7 +30,7 @@ export default function ProductosPage() {
   // Obtener productos del backend
   const fetchProductos = async () => {
     try {
-      const res = await fetch('http://localhost:3001/api/productos');
+      const res = await fetch('https://lab15-web-production.up.railway.app/api/productos');
       const data = await res.json();
       setProductos(data);
     } catch (error) {
@@ -44,7 +44,7 @@ export default function ProductosPage() {
     if (!confirmar) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/api/productos/${codProducto}`, {
+      const res = await fetch(`https://lab15-web-production.up.railway.app/api/productos/${codProducto}`, {
         method: 'DELETE',
       });
 
