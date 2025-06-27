@@ -1,44 +1,80 @@
 // URL base del backend donde están expuestas las rutas de productos
-const BASE_URL = 'https://lab15-web-production.up.railway.app/api/productos';
+// URL base del backend
+const BASE_API =
+  typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:3001"
+    : "https://lab15-web-production.up.railway.app";
+
+const BASE_URL = `${BASE_API}/api/productos`;
 
 // Obtiene todos los productos (GET /api/productos)
 export async function getProductos() {
-  const res = await fetch(BASE_URL);      // Hace la solicitud al backend
-  return res.json();                      // Devuelve la respuesta como JSON
+  try {
+    const res = await fetch(BASE_URL);
+    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+    return await res.json();
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+    return [];
+  }
 }
 
 // Obtiene un solo producto por ID (GET /api/productos/:id)
 export async function getProducto(id) {
-  const res = await fetch(`${BASE_URL}/${id}`);
-  return res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`);
+    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+    return await res.json();
+  } catch (error) {
+    console.error(`Error al obtener el producto ${id}:`, error);
+    return null;
+  }
 }
 
 // Crea un nuevo producto (POST /api/productos)
 export async function createProducto(producto) {
-  const res = await fetch(BASE_URL, {
-    method: 'POST',                                     // Método HTTP
-    headers: { 'Content-Type': 'application/json' },    // Encabezado que indica que se envía JSON
-    body: JSON.stringify(producto)                      // Convierte el objeto JS a JSON
-  });
-  return res.json();
+  try {
+    const res = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(producto)
+    });
+    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+    return await res.json();
+  } catch (error) {
+    console.error("Error al crear producto:", error);
+    return null;
+  }
 }
 
 // Actualiza un producto por ID (PUT /api/productos/:id)
 export async function updateProducto(id, producto) {
-  const res = await fetch(`${BASE_URL}/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(producto)
-  });
-  return res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(producto)
+    });
+    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+    return await res.json();
+  } catch (error) {
+    console.error(`Error al actualizar producto ${id}:`, error);
+    return null;
+  }
 }
 
 // Elimina un producto por ID (DELETE /api/productos/:id)
 export async function deleteProducto(id) {
-  await fetch(`${BASE_URL}/${id}`, {
-    method: 'DELETE'
-  });
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: 'DELETE'
+    });
+    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+  } catch (error) {
+    console.error(`Error al eliminar producto ${id}:`, error);
+  }
 }
+
 
 // EJEMPLO CON AXIOS
 

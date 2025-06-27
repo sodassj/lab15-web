@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Edit, Trash2, Package, DollarSign, Archive, Search, Filter, Grid, List } from 'lucide-react';
-import Image from "next/image";
+import { Plus, Edit, Trash2, Package, Search, Grid, List } from 'lucide-react';
+
 import * as THREE from 'three';
 
 // Define el tipo del producto
