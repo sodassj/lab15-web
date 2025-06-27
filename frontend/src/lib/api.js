@@ -1,5 +1,4 @@
 // URL base del backend donde están expuestas las rutas de productos
-// URL base del backend
 const BASE_URL = "https://lab15-web-production.up.railway.app/api/productos";
 
 // Obtiene todos los productos (GET /api/productos)
